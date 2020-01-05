@@ -1,7 +1,7 @@
 <?php include 'inc/header.php'; ?>
 
 <?php 
-  if (!isset($_GET['detailid']) && $_GET['detailid'] == NULL) {
+  if (! {
     echo "Id Not Found";
 
   }else{
