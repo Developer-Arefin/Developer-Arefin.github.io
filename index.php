@@ -305,10 +305,11 @@
 
                 <p>Waters can not replenish hath fly and be to brought isn't very days behold without land every above lights us fruitful wherein divide it him fowl moving may beginning subdue fly waters can't replenish hath fly and be to brought isn't very days behold </p>
                 <ul class="star_rating mt-3">
-                  <li><span><i class="fas fa-star"></i></span></li>
-                  <li><span><i class="fas fa-star"></i></span></li>
-                  <li><span><i class="fas fa-star"></i></span></li>
-                  <li><span><i class="fas fa-star"></i></span></li>
+                  <li><input><i class="fas fa-star"></i></input></li>
+                  <li><input><i class="fas fa-star"></i></input></li>
+                  <li><input><i class="fas fa-star"></i></input></li>
+                  <li><input><i class="fas fa-star"></i></input></li>
+
                   <li class="disable"><span><i class="fas fa-star"></i></span></li>                  
                 </ul>
               </div>
