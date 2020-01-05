@@ -15,9 +15,11 @@
         </div>
     </section>
     <!--================ End Banner Area =================-->
+    
 
 	<!--================ Start Features Area =================-->
-	<section class="services_area pb-0 section-margin">
+
+	<section class="services_area">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
@@ -30,35 +32,25 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-					<div class="service_item">
-						<img src="img/services/s1.png" alt="">
-						<h4>Web Development</h4>
-						<p>Fruit saw for brought fish forth had ave is man a that their Two he is dominion evening their Fruit saw for
-							brought fish forth</p>
-						<a href="#" class="primary_btn2 mt-35">Learn More</a>
-					</div>
-				</div>
+				<?php 
+				$query ="SELECT * FROM tbl_services";
+				$post = $db->select($query);
+				if ($post) {
+					while ($result= $post->fetch_assoc()) {?>
+						
 
 				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
 					<div class="service_item">
-						<img src="img/services/s2.png" alt="">
-						<h4>UX/UI Design</h4>
-						<p>Fruit saw for brought fish forth had ave is man a that their Two he is dominion evening their Fruit saw for
-							brought fish forth</p>
-						<a href="#" class="primary_btn2 mt-35">Learn More</a>
+						<img class="img-fluid" src="admin/<?php echo $result['image'] ;?>" alt="">
+						<h4><?php echo $result['name']; ?></h4>
+						<p><?php echo $fm->textShorten($result['details']); ?></p>
+						<a href="details.php?detailid=<?php echo $result['id'];?>" class="primary_btn2 mt-35">Learn More</a>
 					</div>
 				</div>
+    <?php } }else{
+    	echo "Coding problem";
+ } ?>
 
-				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-					<div class="service_item">
-						<img src="img/services/s3.png" alt="">
-						<h4>WP Developing</h4>
-						<p>Fruit saw for brought fish forth had ave is man a that their Two he is dominion evening their Fruit saw for
-							brought fish forth</p>
-						<a href="#" class="primary_btn2 mt-35">Learn More</a>
-					</div>
-				</div>
 			</div>
 		</div>
 	</section>

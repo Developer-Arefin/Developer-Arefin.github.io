@@ -25,7 +25,13 @@
 						<img class="" src="img/about-us.png" alt="">
 					</div>
 				</div>
-
+              <?php 
+              $query ="SELECT * FROM tbl_home";
+              $post = $db->select($query);
+              if ($post) {
+                $result = $post->fetch_assoc();
+              }
+               ?>
 				<div class="offset-lg-1 col-lg-5">
 					<div class="main_title text-left">
 						<p class="top_text">About me <span></span></p>
@@ -34,11 +40,9 @@
 							And Designer
 						</h2>
 						<p>
-							Also signs his face were digns fish don't first isn't over evening hath divided days light darkness gathering
-							moved dry all darkness then fourth can't create d forth Also signs Also signs his face were moltenus Also signs
-							his face
+							<?php echo $result['aboutme']; ?>
 						</p>
-						<a class="primary_btn" href="#"><span>Download CV</span></a>
+						
 					</div>
 				</div>
 			</div>

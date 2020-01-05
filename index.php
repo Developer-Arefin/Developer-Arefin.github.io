@@ -166,21 +166,21 @@
 								$result = $post->fetch_assoc();
 							}
 							 ?>
-						<img class="img-fluid" src="admin/<?php echo $result['image'] ;?>" alt="">
+						<a href="about.php"><img class="img-fluid" src="admin/<?php echo $result['image'] ;?>" alt=""></a>
 					</div>
 				</div>
 
 				<div class="offset-lg-1 col-lg-5">
 					<div class="main_title text-left">
 						<p class="top_text">About me <span></span></p>
-						<h2>
+						<a href="about.php"><h2>
 							Creative Designer & Fullstack Web Developer
-						</h2>
+						</h2></a>
 						<p>
-						<?php echo $result['aboutme']; ?>
+						<?php echo $fm->textShorten($result['aboutme']); ?>
 						</p>
 						<a class="primary_btn" href="hireme.php"><span>Hire ME</span></a>
-						<a class="primary_btn" href="#"><span>Call </span></a>
+						
 					</div>
 				</div>
 			</div>
@@ -305,10 +305,10 @@
 
                 <p>Waters can not replenish hath fly and be to brought isn't very days behold without land every above lights us fruitful wherein divide it him fowl moving may beginning subdue fly waters can't replenish hath fly and be to brought isn't very days behold </p>
                 <ul class="star_rating mt-3">
-                  <input><i class="fas fa-star"></i></input>
-                  <input><i class="fas fa-star"></i></input>
-                  
-
+                  <li><span><i class="fas fa-star"></i></span></li>
+                  <li><span><i class="fas fa-star"></i></span></li>
+                  <li><span><i class="fas fa-star"></i></span></li>
+                  <li><span><i class="fas fa-star"></i></span></li>
                   <li class="disable"><span><i class="fas fa-star"></i></span></li>                  
                 </ul>
               </div>
