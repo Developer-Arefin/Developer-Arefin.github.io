@@ -1,5 +1,7 @@
 <?php include 'inc/header.php'; ?>
 
+
+
   <!--================ Start Banner Area =================-->
   <section class="banner_area">
       <div class="banner_inner d-flex align-items-center">
@@ -15,7 +17,19 @@
       </div>
   </section>
   <!--================ End Banner Area =================-->
+  <div id="rateYo"></div>
+ 
+  <script src="jquery.js"></script>
+  <script src="jquery.rateyo.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 
+  $(function () {
+ 
+  $("#rateYo").rateYo({
+    rating: 3.6
+  });
+ 
+});
 
   <!--================ Start Portfolio Area =================-->
 	<section class="portfolio_area section-margin pb-0" id="portfolio">
@@ -114,6 +128,7 @@
 		</div>
 	</section>
 	<!--================ End Portfolio Area =================-->
+
 
 
   <!--================ Start Brands Area =================-->
