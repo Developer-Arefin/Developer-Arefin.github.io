@@ -22,7 +22,7 @@
   <script src="jquery.js"></script>
   <script src="jquery.rateyo.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
-
+<script>
   $(function () {
  
   $("#rateYo").rateYo({
@@ -30,6 +30,7 @@
   });
  
 });
+  </script>
 
   <!--================ Start Portfolio Area =================-->
 	<section class="portfolio_area section-margin pb-0" id="portfolio">
