@@ -40,75 +40,33 @@
 			</div>
 
 			<div class="filters-content">
+
 				<div class="row portfolio-grid">
+
 					<div class="grid-sizer col-md-3 col-lg-3"></div>
+							<?php 
+							$query ="SELECT * FROM tbl_portfolio limit 4";
+							$post = $db->select($query);
+							if ($post) {
+								while ($post) {
+									$result = $post->fetch_assoc();
+								
+							
+							 ?>
 					<div class="col-lg-6 col-md-6 all following">
 						<div class="single_portfolio">
-							<img class="img-fluid w-100" src="img/portfolio/p1.jpg" alt="">
+							<img class="img-fluid w-100" src="admin/<?php echo $result['image']; ?>" alt="">
 							<div class="overlay"></div>
 							<div class="short_info">
-								<h4><a href="portfolio-details.php">Lens Mockup Design</a></h4>
-								<p>Art, Illustration</p>
+								<h4><a href="portfolio-details.php"><?php echo $result['workname']; ?></a></h4>
+								<p><?php echo $result['workcategory']; ?></p>
 							</div>
 						</div>
 					</div>
 
-					<div class="col-lg-6 col-md-6 all latest popular upcoming">
-						<div class="single_portfolio">
-							<img class="img-fluid w-100" src="img/portfolio/p4.jpg" alt="">
-							<div class="overlay"></div>
-							<div class="short_info">
-								<h4><a href="portfolio-details.php">Lens Mockup Design</a></h4>
-								<p>Art, Illustration</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-3 col-md-6 all latest following">
-						<div class="single_portfolio">
-							<img class="img-fluid w-100" src="img/portfolio/p2.jpg" alt="">
-							<div class="overlay"></div>
-							<div class="short_info">
-								<h4><a href="portfolio-details.php">Lens Mockup Design</a></h4>
-								<p>Art, Illustration</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-3 col-md-6 all latest upcoming">
-						<div class="single_portfolio">
-							<img class="img-fluid w-100" src="img/portfolio/p3.jpg" alt="">
-							<div class="overlay"></div>
-							<div class="short_info">
-								<h4><a href="portfolio-details.php">Lens Mockup Design</a></h4>
-								<p>Art, Illustration</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-6 col-md-6 all popular">
-						<div class="single_portfolio">
-							<img class="img-fluid w-100" src="img/portfolio/p6.jpg" alt="">
-							<div class="overlay"></div>
-							<div class="short_info">
-								<h4><a href="portfolio-details.php">Lens Mockup Design</a></h4>
-								<p>Art, Illustration</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-6 col-md-6 all popular latest following">
-						<div class="single_portfolio">
-							<img class="img-fluid w-100" src="img/portfolio/p5.jpg" alt="">
-							<div class="overlay"></div>
-							<div class="short_info">
-								<h4><a href="portfolio-details.php">Lens Mockup Design</a></h4>
-								<p>Art, Illustration</p>
-							</div>
-						</div>
-					</div>
-
+				<?php  } } ?>
 				</div>
+		
 			</div>
 		</div>
 	</section>
