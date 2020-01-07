@@ -1,5 +1,37 @@
 <?php include 'inc/header.php'; ?>
 
+<style>
+	
+	.pagination{ display: block; font-size: 20px;margin-top: 10px; padding: 10px; text-align: center; }
+	.pagination a {
+	 background: #021017 none repeat scroll 0 0;
+	 border: 1px solid #593ACF;
+	 border-radius: 3px;
+	 color: #ffff;
+	 margin-left: 2px;
+	 padding: 2px 10px;
+	 text-decoration: none;
+	 
+	 }
+	.pagination a:hover{
+	background:  #CF3FBC none repeat scroll 0 0;
+	
+
+	}
+</style>
+<!-- Start Pagination-->
+
+<?php  
+	$per_page = 4;
+	if (isset($_GET["page"])) {
+		$page = $_GET["page"];
+	}else{
+		$page = 1;
+	}
+	$start_from = ($page-1) * $per_page;
+?>
+<!-- End Pagination-->
+
   <!--================ Start Banner Area =================-->
   <section class="banner_area">
       <div class="banner_inner d-flex align-items-center">
@@ -32,69 +64,34 @@
 
 			<div class="filters portfolio-filter">
 				<ul>
-					<li class="active" data-filter="*">all</li>
-					<li data-filter=".popular">popular</li>
-					<li data-filter=".latest"> latest</li>
-					<li data-filter=".following">following</li>
-					<li data-filter=".upcoming">upcoming</li>
+					<li class="active" data-filter="*">all</li>					
+					<li > latest</li>
+					<li >upcoming</li>
 				</ul>
 			</div>
 
 			<div class="filters-content">
 				<div class="row portfolio-grid">
 					<div class="grid-sizer col-md-3 col-lg-3"></div>
+					<?php  
+					$query = "SELECT * FROM tbl_portfolio ORDER BY id ASC limit $start_from,$per_page ";
+					$post  =$db->SELECT($query);
+					if ($post) {
+						while ($result = $post->fetch_assoc()) {
+
+					 ?>
 					<div class="col-lg-6 col-md-6 all popular latest following">
 						<div class="single_portfolio">
-							<img class="img-fluid w-100" src="img/portfolio/p5.jpg" alt="">
+							<img class="img-fluid w-100" src="admin/<?php echo $result['image']; ?>" alt="">
 							<div class="overlay"></div>
 							<div class="short_info">
-								<h4><a href="portfolio-details.html">Lens Mockup Design</a></h4>
-								<p>Art, Illustration</p>
+								<h4><a href="portfolio-details.html"><?php echo $result['workname']; ?></a></h4>
+								<p><?php echo $result['workcategory']; ?></p>
 							</div>
 						</div>
 					</div>
 
-					<div class="col-lg-6 col-md-6 all popular latest following">
-						<div class="single_portfolio">
-							<img class="img-fluid w-100" src="img/portfolio/p5.jpg" alt="">
-							<div class="overlay"></div>
-							<div class="short_info">
-								<h4><a href="portfolio-details.html">Lens Mockup Design</a></h4>
-								<p>Art, Illustration</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-6 all popular latest following">
-						<div class="single_portfolio">
-							<img class="img-fluid w-100" src="img/portfolio/p5.jpg" alt="">
-							<div class="overlay"></div>
-							<div class="short_info">
-								<h4><a href="portfolio-details.html">Lens Mockup Design</a></h4>
-								<p>Art, Illustration</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-6 all popular latest following">
-						<div class="single_portfolio">
-							<img class="img-fluid w-100" src="img/portfolio/p5.jpg" alt="">
-							<div class="overlay"></div>
-							<div class="short_info">
-								<h4><a href="portfolio-details.html">Lens Mockup Design</a></h4>
-								<p>Art, Illustration</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-6 all popular latest following">
-						<div class="single_portfolio">
-							<img class="img-fluid w-100" src="img/portfolio/p5.jpg" alt="">
-							<div class="overlay"></div>
-							<div class="short_info">
-								<h4><a href="portfolio-details.html">Lens Mockup Design</a></h4>
-								<p>Art, Illustration</p>
-							</div>
-						</div>
-					</div>
-s
+				<?php  } } ?>
 
 				</div>
 			</div>
@@ -102,55 +99,21 @@ s
 	</section>
 	<!--================ End Portfolio Area =================-->
 
+				<!-- Start Pagination-->
 
-  <!--================ Start Brands Area =================-->
-	<section class="brands-area section_gap_bottom">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-12">
-					<div class="owl-carousel brand-carousel">
-						<!-- single-brand -->
-						<div class="single-brand-item d-table">
-							<div class="d-table-cell">
-								<img src="img/brands/logo1.png" alt="">
-							</div>
-						</div>
-						<!-- single-brand -->
-						<div class="single-brand-item d-table">
-							<div class="d-table-cell">
-								<img src="img/brands/logo2.png" alt="">
-							</div>
-						</div>
-						<!-- single-brand -->
-						<div class="single-brand-item d-table">
-							<div class="d-table-cell">
-								<img src="img/brands/logo3.png" alt="">
-							</div>
-						</div>
-						<!-- single-brand -->
-						<div class="single-brand-item d-table">
-							<div class="d-table-cell">
-								<img src="img/brands/logo4.png" alt="">
-							</div>
-						</div>
-						<!-- single-brand -->
-						<div class="single-brand-item d-table">
-							<div class="d-table-cell">
-								<img src="img/brands/logo5.png" alt="">
-							</div>
-						</div>
-						<!-- single-brand -->
-						<div class="single-brand-item d-table">
-							<div class="d-table-cell">
-								<img src="img/brands/logo3.png" alt="">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--================ End Brands Area =================-->
+				<?php  
+
+				$pquery = "SELECT * FROM tbl_portfolio ";
+				$result = $db->SELECT($pquery);
+				$total_rows = mysqli_num_rows($result);
+				$total_pages =ceil($total_rows/$per_page);
+				echo "<span class='pagination' ><a href='portfolio.php?page=1'>".'First page'."</a>"; 
+				for ($i=1; $i <=$total_pages ; $i++) { 
+					echo "<a href='portfolio.php?page=".$i."'>".$i."</a>";
+				}
+			    echo "<a href='portfolio.php?page=$total_pages'>".'Last page'."</a></span>"; ?>
+				<!-- End Pagination-->
+
 
 	
 <?php include 'inc/footer.php'; ?>
