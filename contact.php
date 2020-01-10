@@ -67,8 +67,15 @@
     }else{
       $query  ="INSERT INTO tbl_message(message, name ,email,subject) VALUES('$vmessage','$vname','$vemail','$vsubject')";
       $post= $db->INSERT($query);
-      if ($post) {
-        echo "<span style='color:Black; font-size:18px;'> Data Insert Successfully </span>";
+      if ($post) {?>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+swal("Thanks!", "Your message successfully sent!", "success").then(function() {
+    window.location = "contact.php";
+});
+</script>';
+
+        <?php
       }else{
         echo "Codind problem";
       }

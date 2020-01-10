@@ -1,5 +1,6 @@
 	<!--================Footer Area =================-->
-	<footer class="footer_area">
+		<footer class="footer_area">
+
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-lg-12">
@@ -41,6 +42,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!--================End Footer Area =================-->
 
 	<!-- Optional JavaScript -->
+	
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/popper.js"></script>
@@ -55,6 +57,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script src="js/gmaps.js"></script>
 	<script src="js/theme.js"></script>
+
+
+
 </body>
 
 </html>
