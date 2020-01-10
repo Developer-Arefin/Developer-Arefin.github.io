@@ -1,3 +1,24 @@
+
+<?php 
+
+    include '../lib/session.php'; 
+    session::init();
+?>
+
+    <?php include '../lib/Database.php'; ?>
+    <?php include '../config/config.php'; ?>
+    <?php include '../helpers/format.php'; ?>
+
+
+
+    <?php 
+
+    $db = new Database();
+    $fm = new Format();
+
+    ?>
+
+
 <?php
   header("Cache-Control: no-cache, must-revalidate");
   header("Pragma: no-cache"); 

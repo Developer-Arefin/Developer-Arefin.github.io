@@ -99,11 +99,9 @@
 							<h1 class="text-uppercase">I am Arefin Islam</h1>
 							<h5 class="text-uppercase">Web Developer And Graphics Designer</h5>
 							<div class="social_icons my-5">
-								<a href="#"><i class="ti-twitter"></i></a>
-								<a href="#"><i class="ti-skype"></i></a>
-								<a href="#"><i class="ti-instagram"></i></a>
-								<a href="#"><i class="ti-dribbble"></i></a>
-								<a href="#"><i class="ti-vimeo"></i></a>
+								<a href="https://www.instagram.com/arefin_clicker/"><i class="ti-instagram"></i></a>
+								<a href="https://www.facebook.com/Arefin.Islam.33695?ref=bookmarks"><i class="ti-facebook"></i></a>
+								
 							</div>
 							<a class="primary_btn" href="portfolio.php ?>"><span>See My Work</span></a>
 						</div>
@@ -131,20 +129,19 @@
 		<div class="container">
 			<div class="row justify-content-lg-start justify-content-center">
 				<div class="col-lg-2 col-md-3">
-					<div class="statistics_item">
-						<h3><span class="counter">15</span>k+</h3>
-						<p>Happy Customer</p>
-					</div>
+					
 				</div>
+
 				<div class="col-lg-2 col-md-3">
-					<div class="statistics_item">
-						<h3><span class="counter">12</span>k+</h3>
-						<p>Ticket Solved</p>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-3">
-					<div class="statistics_item">
-						<h3><span class="counter">9</span>/10</h3>
+				<div class="statistics_item">
+				<ul class="star_rating mt-4">
+                  <li><span><i class="fas fa-star"></i></span></li>
+                  <li><span><i class="fas fa-star"></i></span></li>
+                  <li><span><i class="fas fa-star"></i></span></li>
+                  <li><span><i class="fas fa-star"></i></span></li>
+                  <li class="disable"><span><i class="fas fa-star"></i></span></li>                  
+                </ul>
+					<h3><span class="counter">9</span>/10</h3>
 						<p>Average Rating</p>
 					</div>
 				</div>
