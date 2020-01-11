@@ -1,7 +1,13 @@
 <?php 
 
-    include '../lib/session.php'; 
-    session::init();
+    
+    session_start();
+
+
+if (!isset($_SESSION['mysession'])) 
+{
+	header("Location: login.php");
+}
 ?>
 
     <?php include '../lib/Database.php'; ?>
@@ -19,11 +25,41 @@
 
 
 <?php 
-if (isset($_SESS)) {
-	# code...
-}
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$firstname = $fm->validation($_POST['firstname']);
+		$lastname = $fm->validation($_POST['lastname']);
+		$username = $fm->validation($_POST['username']);
+		$email = $fm->validation($_POST['email']);
+		$password = $fm->validation($_POST['password']);
+		
+
+		$firstname = mysqli_real_escape_string($db->link,$firstname);
+		$lastname = mysqli_real_escape_string($db->link,$lastname);
+		$username = mysqli_real_escape_string($db->link,$username);
+		$email = mysqli_real_escape_string($db->link,$email);
+		$password = mysqli_real_escape_string($db->link,$password);
+
+		$hash_password = password_hash($password, PASSWORD_DEFAULT);
 	
- ?>
+	$check_email = "SELECT * FROM tbl_user WHERE email='$email'";
+	$check_post  =$db->SELECT($check_email);
+	if ($check_post== false) {
+		$query ="INSERT INTO tbl_user (firstname,lastname,username,email,password) VALUES('$firstname','$lastname','$username','$email','$hash_password')";
+		$post =$db->INSERT($query);
+		if ($post) {
+			echo "Data inserted";
+		}else{
+			echo "Data Not ";
+		}
+
+	}else{
+		echo "ALredery";
+	}
+}
+
+	
+
+?>
 
 <!DOCTYPE html>
 <head>

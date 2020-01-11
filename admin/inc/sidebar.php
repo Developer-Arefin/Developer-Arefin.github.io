@@ -17,21 +17,21 @@
                         <li><a>Contact Us</a></li>
                     </ul>
                 </li>
-				<li><a class="menuitem">Slider Option</a>
+				<li><a class="menuitem">Home Option</a>
                     <ul class="submenu">
-                        <li><a href="addslider.php">Add Slider</a> </li>
+                        <li><a href="addhome.php">Add Home</a> </li>
                         <li><a href="sliderlist.php">Slider List</a> </li>
                     </ul>
                 </li>
                 <li><a class="menuitem">Category Option</a>
                     <ul class="submenu">
-                        <li><a href="addcat.php">Add Category</a> </li>
+                        <li><a href="catadd.php">Add Category</a> </li>
                         <li><a href="catlist.php">Category List</a> </li>
                     </ul>
                 </li>
-                <li><a class="menuitem">Product Option</a>
+                <li><a class="menuitem">Service Option</a>
                     <ul class="submenu">
-                        <li><a href="addproduct.php">Add Product</a> </li>
+                        <li><a href="serviceadd.php">Add Service</a> </li>
                         <li><a href="productlist.php">Product List</a> </li>
                     </ul>
                 </li>

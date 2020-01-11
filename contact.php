@@ -69,7 +69,9 @@
       $post= $db->INSERT($query);
       if ($post) {?>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script>
+
 swal("Thanks!", "Your message successfully sent!", "success").then(function() {
     window.location = "contact.php";
 });
@@ -92,7 +94,7 @@ swal("Thanks!", "Your message successfully sent!", "success").then(function() {
             <div class="row">
               <div class="col-12">
                 <div class="form-group">
-                    <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" placeholder="Enter Message"></textarea>
+                    <textarea class="form-control w-100 " name="message" id="message" cols="30" rows="9" placeholder="Enter Message"></textarea>
                 </div>
               </div>
               <div class="col-sm-6">

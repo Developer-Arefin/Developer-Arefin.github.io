@@ -8,16 +8,50 @@
             <table class="form">     
                 <tr>
                     <td>
-                        <label>Title</label>
+                        <label>Facbook</label>
                     </td>
                     <td>
                         <input type="text" name="title" placeholder="Enter Slider Title..." class="medium" />
                     </td>
-                </tr>           
+                </tr>
+                <tr>
+                    <td>
+                        <label>Instagram</label>
+                    </td>
+                    <td>
+                        <input type="text" name="title" placeholder="Enter Slider Title..." class="medium" />
+                    </td>
+                </tr>  
+                <tr>
+                    <td>
+                        <label>Twitter</label>
+                    </td>
+                    <td>
+                        <input type="text" name="title" placeholder="Enter Slider Title..." class="medium" />
+                    </td>
+                </tr>             
     
                 <tr>
                     <td>
-                        <label>Upload Image</label>
+                        <label>About me Image</label>
+                    </td>
+                    <td>
+                        <input type="file" name="image"/>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td>
+                        <label>Banner Image</label>
+                    </td>
+                    <td>
+                        <input type="file" name="image"/>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td>
+                        <label>Logo Image</label>
                     </td>
                     <td>
                         <input type="file" name="image"/>
