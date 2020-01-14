@@ -1,8 +1,11 @@
 
 <?php 
 
-    include '../lib/session.php'; 
-    session::init();
+session_start();
+if (!isset($_SESSION['mysession'])) 
+{
+    header("Location: login.php");
+}
 ?>
 
     <?php include '../lib/Database.php'; ?>
@@ -74,7 +77,7 @@
                     <div class="floatleft marginleft10">
                         <ul class="inline-ul floatleft">
                             <li>Hello Admin</li>
-                            <li><a href="#">Logout</a></li>
+                            <li><a href="logout.php?logout">Logout</a></li>
                         </ul>
                     </div>
                 </div>

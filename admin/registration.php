@@ -1,14 +1,9 @@
 <?php 
-
-    
-    session_start();
-
-
-if (!isset($_SESSION['mysession'])) 
-{
-	header("Location: login.php");
-}
-?>
+	session_start();
+	if (isset($_SESSION['mysession']) !="") {
+		header("location:index.php");
+	}
+ ?>
 
     <?php include '../lib/Database.php'; ?>
     <?php include '../config/config.php'; ?>
@@ -89,6 +84,7 @@ if (!isset($_SESSION['mysession']))
 			</div>
 			<div>
 				<input type="submit" value="Sign Up" />
+				<a style=" text-decoration: none; border-radius: 5px; border: 1px solid#7E99C7 ; padding: 5px; font-size: 15px; font-weight: bold; " href="login.php"> Login Here</a>
 			</div>
 		</form><!-- form -->
 		<div class="button">
