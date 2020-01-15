@@ -1,3 +1,4 @@
+
 <?php 
 	session_start();
 	if (isset($_SESSION['mysession']) !="") {
@@ -8,6 +9,7 @@
     <?php include '../lib/Database.php'; ?>
     <?php include '../config/config.php'; ?>
     <?php include '../helpers/format.php'; ?>
+   
 
 
 
@@ -26,6 +28,8 @@
 		$username = $fm->validation($_POST['username']);
 		$email = $fm->validation($_POST['email']);
 		$password = $fm->validation($_POST['password']);
+		$token =md5(rand('10000','99999'));
+		$status ="Inactive";
 		
 
 		$firstname = mysqli_real_escape_string($db->link,$firstname);
@@ -39,18 +43,45 @@
 	$check_email = "SELECT * FROM tbl_user WHERE email='$email'";
 	$check_post  =$db->SELECT($check_email);
 	if ($check_post== false) {
-		$query ="INSERT INTO tbl_user (firstname,lastname,username,email,password) VALUES('$firstname','$lastname','$username','$email','$hash_password')";
+		$query ="INSERT INTO tbl_user (firstname,lastname,username,email,password,token,status) VALUES('$firstname','$lastname','$username','$email','$hash_password','$token','$status')";
 		$post =$db->INSERT($query);
-		if ($post) {
-			echo "Data inserted";
-		}else{
-			echo "Data Not ";
-		}
 
-	}else{
-		echo "ALredery";
+    $last_id = mysqli_insert_id();
+    $url     ='http://'.$_SERVER['SERVER_NAME'].'/send-mail-phpmailer/verify.php?id='.$last_id.'&token='.$token;
+    $output  = '<div>Thanks For registration from localhost. Please clicke this link and confirm registraton <br>'.$url.'. </div>';
+
+		if ($post) {
+
+
+	require_once('mailer/class.phpmailer.php');
+		
+		$mail = new PHPMailer(true);
+		$mail->IsSMTP(); 
+		$mail->SMTPDebug  = 0;                     
+		$mail->SMTPAuth   = true;                  
+		$mail->SMTPSecure = "ssl";                 
+		$mail->Host       = "smtp.gmail.com";      
+		$mail->Port       = 465;             
+		$mail->AddAddress($email);
+		$mail->Username='arefinislam634@gmail.com';  
+		$mail->Password='Arefin@#01315391066@#';            
+		$mail->SetFrom('arefinislam634@gmail.com','New Horizons');
+		 
+		//$mail->AddReplyTo("araman666@gmail.com","New Horizons");
+		$mail->Subject    = 'Registration Confirmation';
+		$mail->MsgHTML($output);
+		$mail->Send();
+		if (!$mail->send()) {
+			echo 'Message Count not be send';
+			echo 'Mailer Error: '.$mail->ErrorInfo;
+		}else{
+			echo "Congratulation your registratonsuccesfullly please verified your email";
+		}
 	}
 }
+}
+
+
 
 	
 
