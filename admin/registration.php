@@ -1,127 +1,155 @@
-
 <?php 
-	session_start();
-	if (isset($_SESSION['mysession']) !="") {
-		header("location:index.php");
-	}
- ?>
+	require('PHPMailer/PHPMailerAutoload.php'); 
+	require('crediantial.php');
 
-    <?php include '../lib/Database.php'; ?>
-    <?php include '../config/config.php'; ?>
-    <?php include '../helpers/format.php'; ?>
-   
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+	<link rel="stylesheet" href="css/aos.css" />
 
-    <?php 
-
-    $db = new Database();
-    $fm = new Format();
-
-    ?>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<script>
+	  AOS.init();
+	</script>
+
+</head>
+<body>
 <?php 
-	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		$firstname = $fm->validation($_POST['firstname']);
-		$lastname = $fm->validation($_POST['lastname']);
-		$username = $fm->validation($_POST['username']);
-		$email = $fm->validation($_POST['email']);
-		$password = $fm->validation($_POST['password']);
-		$token =md5(rand('10000','99999'));
-		$status ="Inactive";
-		
+$conn = mysqli_connect("localhost","root","","arefin");
 
-		$firstname = mysqli_real_escape_string($db->link,$firstname);
-		$lastname = mysqli_real_escape_string($db->link,$lastname);
-		$username = mysqli_real_escape_string($db->link,$username);
-		$email = mysqli_real_escape_string($db->link,$email);
-		$password = mysqli_real_escape_string($db->link,$password);
-
-		$hash_password = password_hash($password, PASSWORD_DEFAULT);
+if(isset($_POST['register'])){
 	
-	$check_email = "SELECT * FROM tbl_user WHERE email='$email'";
-	$check_post  =$db->SELECT($check_email);
-	if ($check_post== false) {
-		$query ="INSERT INTO tbl_user (firstname,lastname,username,email,password,token,status) VALUES('$firstname','$lastname','$username','$email','$hash_password','$token','$status')";
-		$post =$db->INSERT($query);
+	$name = $_POST['name'];
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+	$repassword = $_POST['repassword'];
 
-    $last_id = mysqli_insert_id();
-    $url     ='http://'.$_SERVER['SERVER_NAME'].'/send-mail-phpmailer/verify.php?id='.$last_id.'&token='.$token;
-    $output  = '<div>Thanks For registration from localhost. Please clicke this link and confirm registraton <br>'.$url.'. </div>';
+	$token = md5(rand('10000', '99999'));
+	if ($password !== $repassword) {
+		$msg =  "Password & Retype password not match";
+	}else{
+		$select = "INSERT INTO register(name,email,password,token,status)VALUES('".$name."','".$email."','".$password."','".$token."','Inactive')";
+		$result = mysqli_query($conn,$select);
 
-		if ($post) {
+		$lastId = mysqli_insert_id($conn);
 
-
-	require_once('mailer/class.phpmailer.php');
+		$url = 'http://'.$_SERVER['SERVER_NAME'].'/Developer-Arefin.github.io/admin/verify.php?id='.$lastId.'&token='.$token;                                // Set email format to HTML
 		
-		$mail = new PHPMailer(true);
-		$mail->IsSMTP(); 
-		$mail->SMTPDebug  = 0;                     
-		$mail->SMTPAuth   = true;                  
-		$mail->SMTPSecure = "ssl";                 
-		$mail->Host       = "smtp.gmail.com";      
-		$mail->Port       = 465;             
-		$mail->AddAddress($email);
-		$mail->Username='arefinislam634@gmail.com';  
-		$mail->Password='Arefin@#01315391066@#';            
-		$mail->SetFrom('arefinislam634@gmail.com','New Horizons');
-		 
-		//$mail->AddReplyTo("araman666@gmail.com","New Horizons");
-		$mail->Subject    = 'Registration Confirmation';
-		$mail->MsgHTML($output);
-		$mail->Send();
-		if (!$mail->send()) {
-			echo 'Message Count not be send';
-			echo 'Mailer Error: '.$mail->ErrorInfo;
-		}else{
-			echo "Congratulation your registratonsuccesfullly please verified your email";
+		$output = '<div>Thanks for registering with localhost. Please click this link to complete this registation <br>'.$url.'</div>';
+
+		if ($result == true) {
+
+			$mail = new PHPMailer();
+			$mail->isSMTP();  
+			//$mail->SMTPDebug = 2;                                   // Set mailer to use SMTP
+			$mail->Host = 'smtp.gmail.com';  					// Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = EMAIL;                 		// SMTP username
+			$mail->Password = PASS;                           // SMTP password
+			$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+			$mail->Port = 587;                                    // TCP port to connect to
+
+			$mail->setFrom(EMAIL, 'info');
+			$mail->addAddress($email, $name);     // Add a recipient
+			
+			//$mail->addAddress('ellen@example.com');               // Name is optional
+			//$mail->addReplyTo('info@example.com', 'Information');
+			//$mail->addCC('cc@example.com');
+			//$mail->addBCC('bcc@example.com');
+
+			//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');         // Add attachments
+			//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+			
+			
+			$mail->isHTML(true);
+
+			$mail->Subject = 'Register confirmation';
+			$mail->Body    = $output;
+			//$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+			if(!$mail->send()) {
+				echo 'Message could not be sent.';
+				echo 'Mailer Error: ' . $mail->ErrorInfo;
+			} else {
+				$msg = '<div class="alert alert-success">Congratulation, Your registration has been successful. please verify your account.</div>';
+			}
 		}
 	}
 }
-}
-
-
-
-	
 
 ?>
 
-<!DOCTYPE html>
-<head>
-<meta charset="utf-8">
-<title>Login</title>
-    <link rel="stylesheet" type="text/css" href="css/stylelogin.css" media="screen" />
-</head>
-<body>
-<div class="container">
-	<section id="content">
+	<br><br><br><br>
+	<div class="container">
+		<center>
+			<h1>Registraion with email verify link using phpmailer</h1>
+		</center>
+		<hr>
+		<center>
+			<?php if (isset($msg)) { echo $msg; } ?>
+		</center>
 		<form action="" method="post">
-			<h1>Admin Login</h1>
-			<div>
-				<input type="text" placeholder="First Name" required="" name="firstname"/>
+			<div class="row" style="background:#e6ebe5">
+				<div class="col-md-12" style="padding:20px;width:40%">
+					<div class="form-group">
+						<label>Enter Name</label>
+						<input class="form-control" type="text" name="name" placeholder="Enter Name" required="">
+					</div>
+					
+					<div class="form-group">
+						<label>Enter Email</label>
+						<input class="form-control" type="email" name="email" placeholder="Enter Email">
+					</div>
+					
+					<div class="form-group">
+						<label>Enter Password</label>
+						<input class="form-control" type="password" name="password" placeholder="Enter Password">
+					</div>
+
+					<div class="form-group">
+						<label>Enter Re Password</label>
+						<input class="form-control" type="password" name="repassword" placeholder="Enter Re Password">
+					</div>
+
+					<div class="form-group">
+						<input class="btn btn-success pull-left" type="submit" name="register" value="Register">
+						<a href="login.php" class="btn btn-warning pull-right">Log In</a>
+					</div>
+				</div>
 			</div>
-			<div>
-				<input type="text" placeholder="Last Name" required="" name="lastname"/>
-			</div>
-			<div>
-				<input type="text" placeholder="Username" required="" name="username"/>
-			</div>
-			<div>
-				<input type="text" placeholder="Email" required="" name="email"/>
-			</div>
-			<div>
-				<input type="password" placeholder="Password" required="" name="password"/>
-			</div>
-			<div>
-				<input type="submit" value="Sign Up" />
-				<a style=" text-decoration: none; border-radius: 5px; border: 1px solid#7E99C7 ; padding: 5px; font-size: 15px; font-weight: bold; " href="login.php"> Login Here</a>
-			</div>
-		</form><!-- form -->
-		<div class="button">
-			<a href="#">Developer Arefin Panel</a>
-		</div><!-- button -->
-	</section><!-- content -->
-</div><!-- container -->
+			
+		</form>
+	</div>
+
+	<div class="container">
+
+		
+	</div>
+				
+
+						
+					
+	
+	
+
 </body>
 </html>
+<script src="js/aos.js"></script>
+<script>
+  AOS.init({
+    easing: 'ease-in-out-sine'
+  });
+</script>
