@@ -15,8 +15,12 @@
 			<div>
 				<input type="password" placeholder="Password" required="" name="password"/>
 			</div>
+
 			<div>
 				<input type="submit" value="Log in" />
+			</div>
+			<div>
+				<a style=" text-decoration: none; font-size: 15px; border: 2px solid blue; border-radius: 20px; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;  " href="register.php">Singup</a>
 			</div>
 		</form><!-- form -->
 		<div class="button">
