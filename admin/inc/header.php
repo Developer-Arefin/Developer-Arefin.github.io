@@ -7,11 +7,7 @@ if (!isset($_SESSION['mysession']))
     header("Location: login.php");
 }
 ?>
-<?php 
-    require('PHPMailer/PHPMailerAutoload.php'); 
-    require('crediantial.php');
 
-?>
     <?php include '../lib/Database.php'; ?>
     <?php include '../config/config.php'; ?>
     <?php include '../helpers/format.php'; ?>

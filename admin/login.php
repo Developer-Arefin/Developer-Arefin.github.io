@@ -1,3 +1,62 @@
+    <?php include '../lib/Database.php'; ?>
+    <?php include '../config/config.php'; ?>
+    <?php include '../helpers/format.php'; ?>
+
+
+
+    <?php 
+
+    $db = new Database();
+    $fm = new Format();
+
+    ?>
+
+
+<?php
+  header("Cache-Control: no-cache, must-revalidate");
+  header("Pragma: no-cache"); 
+  header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); 
+  header("Cache-Control: max-age=2592000");
+?>
+
+<?php 
+session_start();
+if (isset($_SESSION['mysession']) !="") {
+	header("location:index.php");
+}
+ ?>
+
+ <?php 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+ 	$email 	= $fm->validation($_POST['email']);
+	$password 	= $fm->validation($_POST['password']);
+
+	$email 	= mysqli_real_escape_string($db->link, $email);
+	$password 	= mysqli_real_escape_string($db->link, $password);
+
+	$query 	  = "SELECT * FROM register WHERE email = '$email' AND status ='Y'";
+	$result   = $db->SELECT($query);
+	
+
+	$data = mysqli_fetch_array($result);
+	$count=$result->num_rows;
+
+		if (password_verify($password, $data['password']) && $count == 1) {
+		$_SESSION['mysession'] = $data['id'];
+		header("Location: index.php");
+		}else{
+			echo "Invlid Username or password.Please Confirm you account";
+		}
+	
+	}
+
+
+
+
+
+  ?>
+
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -10,7 +69,7 @@
 		<form action="" method="post">
 			<h1>Admin Login</h1>
 			<div>
-				<input type="text" placeholder="Username" required="" name="username"/>
+				<input type="text" placeholder="Email" required="" name="email"/>
 			</div>
 			<div>
 				<input type="password" placeholder="Password" required="" name="password"/>
@@ -24,7 +83,7 @@
 			</div>
 		</form><!-- form -->
 		<div class="button">
-			<a href="#">Training with live project</a>
+			<a href="forgetpass.php">Forget your password?</a>
 		</div><!-- button -->
 	</section><!-- content -->
 </div><!-- container -->

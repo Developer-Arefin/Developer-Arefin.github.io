@@ -15,7 +15,7 @@
 
    if (isset($_GET['id']) && $_GET['token'] ) {
     	
-    	$id= $_GET['id'];
+    	$id = base64_decode($_GET['id']);
     	$token =$_GET['token'];
 
     	$query = "UPDATE register SET status = 'Y' WHERE id='$id' AND token = '$token'";

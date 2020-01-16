@@ -17,7 +17,7 @@
     ?>
 
     <?php 
-
+    session_start();
     if (isset($_SESSION['mysession']) !="") {
     	header("location:login.php");
     }
@@ -57,10 +57,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		if ($password !== $repassword) {
 			echo "Password and Cofirm-Password dont match";
 		}elseif ($count == false) {
+
+		
 		$select = "INSERT INTO register(name,username,email,password,token,status)VALUES('$name','$username','$email', '$hash_password','$token','Inactive' )";
 		$result = $db->INSERT($select);
 
 		$lastId = mysqli_insert_id($db->link);
+		$key = base64_encode($lastId);
+		$lastId = $key;
+		
 
 		$url = 'http://'.$_SERVER['SERVER_NAME'].'/Developer-Arefin.github.io/admin/verify.php?id='.$lastId.'&token='.$token;                                // Set email format to HTML
 		
@@ -150,9 +155,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			<div>
 				<input type="submit" value="Singup" />
 			</div>
+			<div>
+				<a style=" text-decoration: none; font-size: 15px; border: 2px solid blue; border-radius: 20px; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px;  " href="login.php">Login</a>
+			</div>
 		</form><!-- form -->
 		<div class="button">
 			<a href="#">Training with live project</a>
+			
 		</div><!-- button -->
 	</section><!-- content -->
 </div><!-- container -->
