@@ -35,10 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $check_email = "SELECT * FROM register WHERE email = '$txtemail'";
     $post  =$db->SELECT($check_email);
+    if ($post == true) {
+    $result =mysqli_fetch_array($post);
     $count =$post->num_rows;
-    if ($count == false) {
+    if ($count == true) {
         
-        $id =base64_encode($count['id']);
+        $id =base64_encode($result['id']);
         $uptoken=md5(uniqid(rand()));
 
         $query = "UPDATE register SET token ='$uptoken' WHERE email ='$txtemail'";
@@ -59,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
       $mail->Port = 587;                                    // TCP port to connect to
 
       $mail->setFrom(EMAIL, 'info');
-      $mail->addAddress($txtemail, $name);     // Add a recipient
+      $mail->addAddress($txtemail, 'Sir');     // Add a recipient
       
       //$mail->addAddress('ellen@example.com');               // Name is optional
       //$mail->addReplyTo('info@example.com', 'Information');
@@ -80,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         echo 'Message could not be sent.';
         echo 'Mailer Error: ' . $mail->ErrorInfo;
       } else {
-        $msg = '<div class="alert alert-success">Congratulation, Your registration has been successful. please verify your account.</div>';
+        $msg = '<div class="alert alert-success">Thanks for generat your email, Please check your email and verify your account</div>';
       }
       }else{
         echo "Problem found";
@@ -90,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
       echo "Sorry! Your email is not found";
     }
 
+}
 }
 
  ?>
@@ -103,7 +106,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   </head>
   <body >
     <div>
-
+    <?php 
+    if ($msg) {
+     echo $msg;
+    }
+     ?>
       <form  action=" " method="post">
         <h2>Forgot Password</h2><hr />
 		

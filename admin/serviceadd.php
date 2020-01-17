@@ -11,7 +11,7 @@
                     $details   = mysqli_real_escape_string($db->link, $_POST['details']);
                     
                     
-                    $permited  = array('jpg', 'jpeg', 'png', 'gif','mp4','avi');
+                    $permited  = array('jpg', 'jpeg', 'png', 'gif');
                     $file_name = $_FILES['image']['name'];
                     $file_size = $_FILES['image']['size'];
                     $file_temp = $_FILES['image']['tmp_name'];

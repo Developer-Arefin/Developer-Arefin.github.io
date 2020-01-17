@@ -2,7 +2,7 @@
 <?php include 'inc/sidebar.php';?>
 <div class="grid_10">
     <div class="box round first grid">
-        <h2>Add New Slider</h2>
+        <h2>Update Home page</h2>
     <div class="block">               
          <form action="addslider.php" method="post" enctype="multipart/form-data">
             <table class="form">     

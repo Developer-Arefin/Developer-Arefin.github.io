@@ -1,12 +1,6 @@
 
 
 
-<?php 
-
-    include 'lib/session.php'; 
-    session::init();
-?>
-
     <?php include 'lib/Database.php'; ?>
     <?php include 'config/config.php'; ?>
     <?php include 'helpers/format.php'; ?>
@@ -115,7 +109,7 @@
 								$result = $post->fetch_assoc();
 							}
 							 ?>
-							<img class="img-fluid" src="admin/<?php echo $result['image'] ;?>" alt="">
+							<img class="img-fluid" src="admin/<?php echo $result['bannerimage'] ;?>" alt="">
 						</div>
 					</div>
 				</div>
@@ -163,7 +157,7 @@
 								$result = $post->fetch_assoc();
 							}
 							 ?>
-						<a href="about.php"><img class="img-fluid" src="admin/<?php echo $result['image'] ;?>" alt=""></a>
+						<a href="about.php"><img class="img-fluid" src="admin/<?php echo $result['aboutmeimage'] ;?>" alt=""></a>
 					</div>
 				</div>
 

@@ -18,17 +18,20 @@
      ?>
   
   <?php 
-    if (isset($_GET['id']) && $_GET['token'] && $_POST['btn-submit'] ) {
+    if (isset($_GET['id']) && $_GET['token'] && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
        $password    = $fm->validation($_POST['password']);
        $repassword    = $fm->validation($_POST['repassword']);
 
        $password = mysqli_real_escape_string($db->link, $password);
        $repassword = mysqli_real_escape_string($db->link, $repassword);
+
        if ($password != $repassword) {
            echo "Password Not matched";
        }else{
 
+        $password =password_hash($password, PASSWORD_DEFAULT);
+        
         $id     = base64_decode($_GET['id']);
         $token  =$_GET['token'];
        
@@ -64,7 +67,7 @@
         <input type="password" placeholder="New-Password" name="password" required /><br>
         <input type="password" placeholder="Confirm-password" name="repassword" required />
         <hr />
-        <button type="submit" name="btn-submit">Save Changes</button>
+        <button type="submit" name="submit">Save Changes</button>
       </form>
 
     </div>
