@@ -1,39 +1,73 @@
-﻿<?php include 'inc/header.php';?>
-<?php include 'inc/sidebar.php';?>
-<div class="grid_10">
-    <div class="box round first grid">
-        <h2>Change Password</h2>
-        <div class="block">               
-         <form>
-            <table class="form">					
-                <tr>
-                    <td>
-                        <label>Old Password</label>
-                    </td>
-                    <td>
-                        <input type="password" placeholder="Enter Old Password..."  name="title" class="medium" />
-                    </td>
-                </tr>
-				 <tr>
-                    <td>
-                        <label>New Password</label>
-                    </td>
-                    <td>
-                        <input type="password" placeholder="Enter New Password..." name="slogan" class="medium" />
-                    </td>
-                </tr>
-				 
-				
-				 <tr>
-                    <td>
-                    </td>
-                    <td>
-                        <input type="submit" name="submit" Value="Update" />
-                    </td>
-                </tr>
-            </table>
-            </form>
-        </div>
+﻿
+    <?php include '../lib/Database.php'; ?>
+    <?php include '../config/config.php'; ?>
+    <?php include '../helpers/format.php'; ?>
+
+    <?php 
+
+    $db = new Database();
+    $fm = new Format();
+
+    ?>
+    <?php 
+    if(empty($_GET['id']) && empty($_GET['token']))
+    {
+       header('location:changepassword.php');
+    }
+
+     ?>
+  
+  <?php 
+    if (isset($_GET['id']) && $_GET['token'] && $_POST['btn-submit'] ) {
+
+       $password    = $fm->validation($_POST['password']);
+       $repassword    = $fm->validation($_POST['repassword']);
+
+       $password = mysqli_real_escape_string($db->link, $password);
+       $repassword = mysqli_real_escape_string($db->link, $repassword);
+       if ($password != $repassword) {
+           echo "Password Not matched";
+       }else{
+
+        $id     = base64_decode($_GET['id']);
+        $token  =$_GET['token'];
+       
+        $query = "UPDATE register SET password = '$password' WHERE id = '$id' AND token ='$token' ";
+        $post  = $db->UPDATE($query);
+        if ($post) {
+            echo "Password Is changed successfully";
+        }else{
+            echo "No result found";
+        }
+    }
+
+ }
+
+
+   ?>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Forgot Password</title>
+  </head>
+  <body >
+    <div>
+
+      <form  method="post">
+        <h2>Forgot Password</h2><hr />
+        
+            <div>
+            Please enter your new password!
+            </div>  
+    
+        <input type="password" placeholder="New-Password" name="password" required /><br>
+        <input type="password" placeholder="Confirm-password" name="repassword" required />
+        <hr />
+        <button type="submit" name="btn-submit">Save Changes</button>
+      </form>
+
     </div>
-</div>
-<?php include 'inc/footer.php';?>
+    
+  </body>
+</html>

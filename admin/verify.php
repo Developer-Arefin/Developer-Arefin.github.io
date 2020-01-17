@@ -9,7 +9,13 @@
     $fm = new Format();
 
     ?>
+<?php 
+if(empty($_GET['id']) && empty($_GET['token']))
+{
+   header('location:login.php');
+}
 
+ ?>
 
     <?php 
 
