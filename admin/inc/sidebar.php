@@ -23,9 +23,9 @@
                         <li><a href="sliderlist.php">Slider List</a> </li>
                     </ul>
                 </li>
-                <li><a class="menuitem">Category Option</a>
+                <li><a class="menuitem">Portfolio Option</a>
                     <ul class="submenu">
-                        <li><a href="catadd.php">Add Category</a> </li>
+                        <li><a href="catadd.php">Add Portfolio</a> </li>
                         <li><a href="catlist.php">Category List</a> </li>
                     </ul>
                 </li>
