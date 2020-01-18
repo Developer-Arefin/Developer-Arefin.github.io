@@ -1,5 +1,4 @@
 <?php include 'inc/header.php'; ?>
-
 <style>
 	
 	.pagination{ display: block; font-size: 20px;margin-top: 10px; padding: 10px; text-align: center; }
@@ -19,6 +18,7 @@
 
 	}
 </style>
+
 <!-- Start Pagination-->
 
 <?php  
@@ -39,8 +39,8 @@
               <div class="banner_content text-center">
                   <h2>Portfolio</h2>
                   <div class="page_link">
-                      <a href="index.html">Home</a>
-                      <a href="portfolio.html">Portfolio</a>
+                      <a href="index.php">Home</a>
+                      <a href="portfolio.php">Portfolio</a>
                   </div>
               </div>
           </div>
@@ -48,10 +48,20 @@
   </section>
   <!--================ End Banner Area =================-->
 
+<style>
+.scroll {
+  
+  overflow: auto;
+  white-space: nowrap;
+  height: 650px;
+}
 
+
+</style>
   <!--================ Start Portfolio Area =================-->
+ 
 	<section class="portfolio_area section-margin pb-0" id="portfolio">
-		<div class="container">
+		<div class="container" >
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="main_title">
@@ -64,43 +74,82 @@
 
 			<div class="filters portfolio-filter">
 				<ul>
-					<li class="active" data-filter="*">all</li>					
-					<li > latest</li>
-					<li >upcoming</li>
+					<li class="active" data-filter="*">all</li>
+					
+					<li data-filter=".latest"> latest</li>
+					
+					<li data-filter=".upcoming">upcoming</li>
 				</ul>
 			</div>
-
-			<div class="filters-content">
-				<div class="row portfolio-grid">
+ 
+			<div  class="filters-content">
+				<div class="scroll">
+				<div class="row portfolio-grid " >
 					<div class="grid-sizer col-md-3 col-lg-3"></div>
 					<?php  
-					$query = "SELECT * FROM tbl_portfolio ORDER BY id ASC limit $start_from,$per_page ";
+					$query = "SELECT * FROM tbl_portfolio   ";
 					$post  =$db->SELECT($query);
 					if ($post) {
 						while ($result = $post->fetch_assoc()) {
 
 					 ?>
-					<div class="col-lg-6 col-md-6 all popular latest following">
+
+
+					<div class="col-lg-3 col-md-6  all " >
 						<div class="single_portfolio">
 							<img class="img-fluid w-100" src="admin/<?php echo $result['image']; ?>" alt="">
 							<div class="overlay"></div>
 							<div class="short_info">
-								<h4><a href="portfolio-details.html"><?php echo $result['workname']; ?></a></h4>
+								<h4><a href="portfolio-details.php"><?php echo $result['workname']; ?></a></h4>
 								<p><?php echo $result['workcategory']; ?></p>
 							</div>
 						</div>
 					</div>
+					<div class="grid-sizer col-md-3 col-lg-3"></div>
+					<?php  } } ?>
+					
 
-				<?php  } } ?>
+					<?php  
+					$query = "SELECT * FROM tbl_latest ORDER BY id ";
+					$post  =$db->SELECT($query);
+					if ($post) {
+						while ($result = $post->fetch_assoc()) {
+
+					 ?>
+
+					<div class="col-lg-3 col-md-6  all latest  ">
+						<div class="single_portfolio">
+							<img class="img-fluid w-100" src="admin/<?php echo $result['image']; ?>" alt="">
+							<div class="overlay"></div>
+							<div class="short_info">
+								<h4><a href="portfolio-details.php">Logo design</a></h4>
+								<p>Coming soon</p>
+							</div>
+						</div>
+					</div>
+					<?php  } } ?>
+
+					<div class="col-lg-6 col-md-6 all upcoming ">
+						<div class="single_portfolio">
+							<img class="img-fluid w-100" src="img/portfolio/p5.jpg" alt="">
+							<div class="overlay"></div>
+							<div class="short_info">
+								<h4><a href="portfolio-details.php">Lens Mockup Design</a></h4>
+								<p>Art, Illustration</p>
+							</div>
+						</div>
+					</div>
 
 				</div>
 			</div>
+			</div>
+			
 		</div>
 	</section>
+	
 	<!--================ End Portfolio Area =================-->
-
 				<!-- Start Pagination-->
-
+				<!--
 				<?php  
 
 				$pquery = "SELECT * FROM tbl_portfolio ";
@@ -112,12 +161,12 @@
 					echo "<a href='portfolio.php?page=".$i."'>".$i."</a>";
 				}
 			    echo "<a href='portfolio.php?page=$total_pages'>".'Last page'."</a></span>"; ?>
+				-->
 				<!-- End Pagination-->
 
 
 	
 <?php include 'inc/footer.php'; ?>
-  
 
   <!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
