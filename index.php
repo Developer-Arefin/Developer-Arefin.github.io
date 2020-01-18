@@ -208,11 +208,12 @@
 						<a href="details.php?detailid=<?php echo $result['id'];?>" class="primary_btn2 mt-35">Learn More</a>
 					</div>
 				</div>
+				</div>
     <?php } }else{
     	echo "Coding problem";
  } ?>
 
-			</div>
+			
 		</div>
 	</section>
 	<!--================ End Features Area =================-->

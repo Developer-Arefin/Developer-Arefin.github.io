@@ -9,14 +9,7 @@
     $fm = new Format();
 
     ?>
-    <?php 
-    if(empty($_GET['id']) && empty($_GET['token']))
-    {
-       header('location:changepassword.php');
-    }
 
-     ?>
-  
   <?php 
     if (isset($_GET['id']) && $_GET['token'] && $_SERVER['REQUEST_METHOD'] == 'POST') {
 

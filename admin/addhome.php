@@ -11,7 +11,7 @@
                         <label>Facbook</label>
                     </td>
                     <td>
-                        <input type="text" name="title" placeholder="Enter Slider Title..." class="medium" />
+                        <input type="text" name="title" placeholder="Epdate your facebook link.." class="medium" />
                     </td>
                 </tr>
                 <tr>
