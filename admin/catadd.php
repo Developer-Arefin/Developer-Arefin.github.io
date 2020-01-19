@@ -2,13 +2,13 @@
 <?php include 'inc/sidebar.php';?>
 
                     <?php
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     
-                    $name      =  $fm->validation($_POST['name']);
-                    $category   =  $fm->validation($_POST['category']);
+                    $workname      =  $fm->validation($_POST['workname']);
+                    $workcategory   =  $fm->validation($_POST['workcategory']);
 
-                    $name      = mysqli_real_escape_string($db->link, $_POST['name']);
-                    $category   = mysqli_real_escape_string($db->link, $_POST['category']);
+                    $workname      = mysqli_real_escape_string($db->link, $_POST['workname']);
+                    $workcategory   = mysqli_real_escape_string($db->link, $_POST['workcategory']);
                     
                     
                     $permited  = array('jpg', 'jpeg', 'png', 'gif');
@@ -21,7 +21,7 @@
                     $unique_image   = substr(md5(time()), 0, 10).'.'.$file_ext;
                     $uploaded_image = "upload/".$unique_image;
 
-                if ($name == "" || $category == "" ||$file_name == "") {
+                if ($workname == "" || $workcategory == "" ||$file_name == "") {
                     echo "Field Must Not Be Empty";
                     }
                     elseif ($file_size >100048567) {
@@ -34,8 +34,8 @@
                     } 
                     else{
                     move_uploaded_file($file_temp, $uploaded_image);
-                    $query         = "INSERT INTO tbl_portfolio( name, category, image) 
-                    VALUES( '$name', '$category', '$uploaded_image')";
+                    $query         = "INSERT INTO tbl_portfolio( image,workname, workcategory) 
+                    VALUES('$uploaded_image', '$workname', '$workcategory')";
                     $inserted_rows = $db->insert($query);
                     if ($inserted_rows) {
                      echo "<span class='success'>Image Inserted Successfully.
@@ -45,6 +45,7 @@
                     }
                     }
                    }
+
 
             ?>
 <div class="grid_10">
@@ -59,7 +60,7 @@
                         <label>Name</label>
                     </td>
                     <td>
-                        <input type="text" name="name" placeholder="Enter Product Name..." class="medium" />
+                        <input type="text" name="workname" placeholder="Enter Product Name..." class="medium" />
                     </td>
                 </tr>
                 
@@ -68,7 +69,7 @@
                         <label>Category</label>
                     </td>
                     <td>
-                        <input type="text" name="category" placeholder="Enter Product Name..." class="medium" />
+                        <input type="text" name="workcategory" placeholder="Enter Product Name..." class="medium" />
                     </td>
                 </tr>
                 
