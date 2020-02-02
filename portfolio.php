@@ -87,7 +87,7 @@
 				<div class="row portfolio-grid " >
 					<div class="grid-sizer col-md-3 col-lg-3"></div>
 					<?php  
-					$query = "SELECT * FROM tbl_portfolio   ";
+					$query = "SELECT * FROM tbl_portfolio WHERE type ='1'  ";
 					$post  =$db->SELECT($query);
 					if ($post) {
 						while ($result = $post->fetch_assoc()) {
@@ -110,7 +110,7 @@
 					
 
 					<?php  
-					$query = "SELECT * FROM tbl_latest ORDER BY id ";
+					$query = "SELECT * FROM tbl_portfolio WHERE type ='2'  ";
 					$post  =$db->SELECT($query);
 					if ($post) {
 						while ($result = $post->fetch_assoc()) {

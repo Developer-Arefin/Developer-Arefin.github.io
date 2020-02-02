@@ -25,7 +25,8 @@
                 </li>
                 <li><a class="menuitem">Portfolio Option</a>
                     <ul class="submenu">
-                        <li><a href="catadd.php">Add Portfolio</a> </li>
+                        <li><a href="portfolioadd.php">Add Portfolio</a> </li>
+                        <li><a href="video.php">Add Video</a> </li>
                         <li><a href="catlist.php">Category List</a> </li>
                     </ul>
                 </li>
