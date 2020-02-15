@@ -1,5 +1,6 @@
  <?php 
   require('PHPMailer/PHPMailerAutoload.php'); 
+  require 'PHPMailer/class.phpmailer.php';
   require('crediantial.php');
   //error_reporting(0);
   

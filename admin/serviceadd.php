@@ -6,6 +6,8 @@
                     
                     $name      =  $fm->validation($_POST['name']);
                     $details   =  $fm->validation($_POST['details']);
+                    $name=strip_tags($name);
+                    $details=strip_tags($details);
 
                     $name      = mysqli_real_escape_string($db->link, $_POST['name']);
                     $details   = mysqli_real_escape_string($db->link, $_POST['details']);

@@ -45,6 +45,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/slick.min.js"></script>
+	
 	<script src="js/popper.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/stellar.js"></script>
